@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_product_demo_tree" model="ir.ui.view">
+        <field name="name">product.demo.tree</field>
+        <field name="model">product.demo.ept</field>
+        <field name="arch" type="xml">
+            <tree string="Product Demo">
+                <field name="product_name"/>
+                <field name="SKU"/>
+                <field name="barcode"/>
+                <field name="product_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_product_demo_form" model="ir.ui.view">
+        <field name="name">product.demo.form</field>
+        <field name="model">product.demo.ept</field>
+        <field name="arch" type="xml">
+            <form string="Product Demo">
+                <group>
+                    <group>
+                        <field name="product_name"/>
+                        <field name="SKU"/>
+                        <field name="barcode"/>
+                        <field name="product_be_sold"/>
+                        <field name="product_type" widget="radio"/>
+                    </group>
+                    <group>
+                        <field name="sale_price"/>
+                        <field name="cost_price"/>
+                        <field name="warehouse"/>
+                        <field name="product_image" widget="image" class="oe_avatar" />
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Description" name="website_description">
+                        <field name="website_description"/>
+                    </page>
+                    <page string="Internal Note" name="internal_note">
+                        <field name="internal_note"/>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_product_demo_search" model="ir.ui.view">
+        <field name="name">product.demo.search</field>
+        <field name="model">product.demo.ept</field>
+        <field name="arch" type="xml">
+            <search string="Product Demo">
+                <field name="product_name"/>
+                <field name="SKU"/>
+                <field name="barcode"/>
+                <field name="product_be_sold"/>
+                <field name="product_type"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_product_demo" model="ir.actions.act_window">
+        <field name="name">Product Demo</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.demo.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_product_demo_search"/>
+        <field name="help" type="html">
+            <p>Here You can enter the product detailss..</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_root_product" name="Products"/>
+    <menuitem id="menu_mysales" name="My Sales" parent="menu_root_product"/>
+    <menuitem id="menu_product" name="Products" parent="menu_mysales" action="action_product_demo"/>
+
+</odoo>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_employee_demo_tree" model="ir.ui.view">
+        <field name="name">employee.demo.tree</field>
+        <field name="model">employee.demo.ept</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Demo">
+                <field name="employee_name"/>
+                <field name="department"/>
+                <field name="job_position"/>
+                <field name="hire_date"/>
+                <field name="gender"/>
+                <field name="job_type"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_employee_demo_form" model="ir.ui.view">
+        <field name="name">employee.demo.form</field>
+        <field name="model">employee.demo.ept</field>
+        <field name="arch" type="xml">
+            <form string="Employee Demo">
+                <group>
+                    <field name="employee_name"/>
+                    <field name="department"/>
+                    <field name="job_position"/>
+                    <field name="salary"/>
+                    <field name="hire_date"/>
+                    <field name="gender"/>
+                    <field name="job_type"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="view_employee_demo_search" model="ir.ui.view">
+        <field name="name">employee.demo.search</field>
+        <field name="model">employee.demo.ept</field>
+        <field name="arch" type="xml">
+            <search string="Employee Demo">
+                <field name="employee_name"/>
+                <field name="job_position"/>
+                <field name="department"/>
+                <filter name="filter_male" string="Male" domain="[('gender','=','Male')]"/>
+                <filter name="filter_female" string="Female" domain="[('gender','=','Female')]"/>
+                <filter name="filter_transgender" string="Transgender" domain="[('gender','=','Transgender')]"/>
+                <group string="Group by">
+                    <filter string="Job Position" name="filter_job_position" domain="[]"
+                            context="{'group_by': 'job_position'}"/>
+                    <filter string="Department" name="filter_department" domain="[]"
+                            context="{'group_by': 'department'}"/>
+                    <filter string="Job Type" name="filter_job_type" domain="[]" context="{'group_by': 'job_type'}"/>
+                    <filter string="Gender" name="filter_gender" domain="[]" context="{'group_by': 'gender'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_employee_demo" model="ir.actions.act_window">
+        <field name="name">Employee Demo</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee.demo.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_employee_demo_search"/>
+        <field name="help" type="html">
+            <p>Here You can enter the Employee Details..</p>
+        </field>
+    </record>
+    <menuitem id="menu_root_employee" name="Employee"/>
+    <menuitem id="menu_employee" name="Employees" parent="menu_root_employee"/>
+    <menuitem id="menu_all_employee" name="All Employees" parent="menu_employee" action="action_employee_demo"/>
+
+</odoo>

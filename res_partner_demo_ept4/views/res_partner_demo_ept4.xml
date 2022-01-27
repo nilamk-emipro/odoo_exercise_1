@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_demo4_tree" model="ir.ui.view">
+        <field name="name">res.partner.demo4.tree</field>
+        <field name="model">res.partner.demo.ept4</field>
+        <field name="arch" type="xml">
+            <tree string="Partner Demo 4">
+                <field name="name"/>
+                <field name="birthdate"/>
+                <field name="city"/>
+                <field name="state"/>
+                <field name="country"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_partner_demo4_form" model="ir.ui.view">
+        <field name="name">res.partner.demo4.form</field>
+        <field name="model">res.partner.demo.ept4</field>
+        <field name="arch" type="xml">
+            <form string="Partner Demo 4">
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="street1"/>
+                        <field name="street2"/>
+                        <field name="city"/>
+                        <field name="state"/>
+                        <field name="country"/>
+                        <field name="zip_code"/>
+                    </group>
+                    <group>
+                        <field name="birthdate"/>
+                        <field name="age"/>
+                        <field name="weight"/>
+                        <field name="gender"/>
+                        <field name="is_spectacles"/>
+                        <field name="photo" widget="image"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Description" name="description">
+                        <field name="description" nolabel="1" placeholder="Description"/>
+                    </page>
+                    <page string="Details" name="details">
+                        <field name="details" nolabel="1" placeholder="Details"/>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+    <record id="view_partner_demo4_search" model="ir.ui.view">
+        <field name="name">res.partner.demo4.search</field>
+        <field name="model">res.partner.demo.ept4</field>
+        <field name="arch" type="xml">
+            <search string="Partner demo 4">
+                <field name="name"/>
+                <field name="city"/>
+                <field name="state"/>
+                <field name="country"/>
+                <field name="zip_code"/>
+                <group string="Group by">
+                    <filter string="Country" name="filter_country" domain="[]" context="{'group_by':'country'}"/>
+                    <filter string="State" name="filter_state" domain="[]" context="{'group_by':'state'}"/>
+                    <filter string="City" name="filter_city" domain="[]" context="{'group_by':'city'}"/>
+                    <filter string="Gender" name="filter_gender" domain="[]" context="{'group_by':'gender'}"/>
+                </group>
+                <filter string="Male" name="filter_male" domain="[('gender','=','Male')]"/>
+                <filter string="Female" name="filter_female" domain="[('gender','=','Female')]"/>
+                <filter string="Transgender" name="filter_transgender" domain="[('gender','=','Transgender')]"/>
+                <filter string="Spectacles" name="filter_spectacles" domain="[('is_spectacles','=',True)]"/>
+            </search>
+        </field>
+    </record>
+    <record id="action_partner_demo4" model="ir.actions.act_window">
+        <field name="name">Partner Demo 4</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner.demo.ept4</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="xml">
+            <p>Here You can enter the partner details.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_contact" name="Contacts 4"/>
+    <menuitem id="menu_customer_details" name="Customer Details" parent="menu_contact"/>
+    <menuitem id="menu_customer" name="Customer" parent="menu_customer_details" action="action_partner_demo4"/>
+</odoo>

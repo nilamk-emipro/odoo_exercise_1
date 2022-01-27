@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="country_demo_record1" model="res.country.demo.ept">
+            <field name="name_of_country">India</field>
+            <field name="short_code_of_country">IND</field>
+        </record>
+        <record id="country_demo_record2" model="res.country.demo.ept">
+            <field name="name_of_country">Finland</field>
+            <field name="short_code_of_country">FIN</field>
+        </record>
+        <record id="country_demo_record3" model="res.country.demo.ept">
+            <field name="name_of_country">China</field>
+            <field name="short_code_of_country">CHN</field>
+        </record>
+        <record id="country_demo_record4" model="res.country.demo.ept">
+            <field name="name_of_country">France</field>
+            <field name="short_code_of_country">FRA</field>
+        </record>
+        <record id="country_demo_record5" model="res.country.demo.ept">
+            <field name="name_of_country">Germany</field>
+            <field name="short_code_of_country">DEU</field>
+        </record>
+    </data>
+</odoo>

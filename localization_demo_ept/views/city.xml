@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_city_demo_tree" model="ir.ui.view">
+        <field name="name">res.city.demo.tree</field>
+        <field name="model">res.city.demo.ept</field>
+        <field name="arch" type="xml">
+            <tree string="city" editable="bottom">
+                <field name="name_of_city"/>
+                <field name="state_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_city_demo_search" model="ir.ui.view">
+        <field name="name">res.city.demo.search</field>
+        <field name="model">res.city.demo.ept</field>
+        <field name="arch" type="xml">
+            <search string="city">
+                <field name="name_of_city"/>
+                <field name="state_name"/>
+                <filter name="filter_active" string="Active" domain="[('active','=',True)]"/>
+                <filter name="filter_Inactive" string="InActive" domain="[('active','=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_city_demo" model="ir.actions.act_window">
+        <field name="name">city Demo</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.city.demo.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_city_demo_search"/>
+        <field name="help" type="html">
+            <p>Here You can enter city details..</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_city" name="city" parent="menu_localization" action="action_city_demo"/>
+
+</odoo>

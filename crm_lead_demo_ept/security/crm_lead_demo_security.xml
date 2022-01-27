@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="module_crm_lead_demo">
+            <field name="name">CRM_lead_demo</field>
+            <field name="description">Helps you manage your crm lead security</field>
+        </record>
+
+        <record id="group_crm_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="category_id" ref="module_crm_lead_demo"/>
+        </record>
+
+        <record id="group_crm_manager" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="category_id" ref="module_crm_lead_demo"/>
+            <field name="implied_ids" eval="[(4, ref('group_crm_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="crm_lead_demo_rule" model="ir.rule">
+            <field name="name">crm_demo_rule</field>
+            <field name="model_id" ref="model_crm_lead_demo_ept"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="domain_force">[('channel','in',['Newspaper','Television','PhoneCall','SMS'])]</field>
+            <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman_all_leads'))]"/>
+        </record>
+        <record id="crm_lead_demo_rule_manager" model="ir.rule">
+            <field name="name">crm_demo_rule_manager</field>
+            <field name="model_id" ref="model_crm_lead_demo_ept"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('sales_team.group_sale_manager'))]"/>
+        </record>
+    </data>
+</odoo>

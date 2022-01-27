@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_country_demo_tree" model="ir.ui.view">
+        <field name="name">res.country.demo.tree</field>
+        <field name="model">res.country.demo.ept</field>
+        <field name="arch" type="xml">
+            <tree string="Country">
+                <field name="name_of_country"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_country_demo_form" model="ir.ui.view">
+        <field name="name">res.country.demo.form</field>
+        <field name="model">res.country.demo.ept</field>
+        <field name="arch" type="xml">
+            <form string="Country Demo">
+                <group>
+                    <field name="name_of_country"/>
+                    <field name="short_code_of_country"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_country_demo_search" model="ir.ui.view">
+        <field name="name">res.country.demo.search</field>
+        <field name="model">res.country.demo.ept</field>
+        <field name="arch" type="xml">
+            <search string="Country Demo">
+                <field name="name_of_country"/>
+                <field name="short_code_of_country"/>
+                <filter name="filter_active" string="Active" domain="[('active','=',True)]"/>
+                <filter name="filter_Inactive" string="InActive" domain="[('active','=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_country_demo" model="ir.actions.act_window">
+        <field name="name">Country Demo</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.country.demo.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_country_demo_search"/>
+        <field name="help" type="html">
+            <p>Here You can enter country details..</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_localization" name="Localization"/>
+    <menuitem id="menu_countries" name="Countries" parent="menu_localization" action="action_country_demo"/>
+
+</odoo>

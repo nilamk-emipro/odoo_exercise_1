@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="city_demo_record1" model="res.city.demo.ept">
+            <field name="name_of_city">Rajkot</field>
+            <field name="state_name">Gujarat</field>
+        </record>
+        <record id="city_demo_record2" model="res.city.demo.ept">
+            <field name="name_of_city">Surat</field>
+            <field name="state_name">Gujarat</field>
+        </record>
+        <record id="city_demo_record3" model="res.city.demo.ept">
+            <field name="name_of_city">Mumbai</field>
+            <field name="state_name">Maharastra</field>
+        </record>
+        <record id="city_demo_record4" model="res.city.demo.ept">
+            <field name="name_of_city">Jaypur</field>
+            <field name="state_name">Rajasthan</field>
+        </record>
+        <record id="city_demo_record5" model="res.city.demo.ept">
+            <field name="name_of_city">Udaypur</field>
+            <field name="state_name">Rajasthan</field>
+        </record>
+    </data>
+</odoo>

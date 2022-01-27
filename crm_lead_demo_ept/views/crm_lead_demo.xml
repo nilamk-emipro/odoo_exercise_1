@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_crm_lead_demo_tree" model="ir.ui.view">
+        <field name="name">crm.lead.demo.tree</field>
+        <field name="model">crm.lead.demo.ept</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state=='Won'" decoration-danger="state=='Lost'"
+                  decoration-warning="state=='Proposition'">
+                <field name="name"/>
+                <field name="customer_email"/>
+                <field name="customer_phone"/>
+                <field name="next_followup_date"/>
+                <field name="expected_revenue"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_crm_lead_demo_form" model="ir.ui.view">
+        <field name="name">crm.lead.demo.form</field>
+        <field name="model">crm.lead.demo.ept</field>
+        <field name="arch" type="xml">
+            <form string="crm Lead Demo">
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="customer_email"/>
+                        <field name="customer_phone"/>
+                        <field name="expected_revenue"/>
+                        <field name="sales_person"/>
+                        <field name="sales_team"/>
+                    </group>
+                    <group>
+                        <field name="campaign"/>
+                        <field name="channel"/>
+                        <field name="next_followup_date"/>
+                        <field name="won_date"/>
+                        <field name="lost_reason"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_crm_lead_demo_search" model="ir.ui.view">
+        <field name="name">crm.lead.demo.search</field>
+        <field name="model">crm.lead.demo.ept</field>
+        <field name="arch" type="xml">
+            <search string="crm Lead Demo">
+                <field name="name"/>
+                <field name="customer_email"/>
+                <field name="customer_phone"/>
+                <group string="Group by">
+                    <filter string="Channel" name="filter_channel" domain="[]" context="{'group_by': 'channel'}"/>
+                </group>
+                <filter name="date_filter" string="Today"
+                        domain="[('next_followup_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_crm_lead_demo" model="ir.actions.act_window">
+        <field name="name">crm Lead Demo</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">crm.lead.demo.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_crm_lead_demo_search"/>
+        <field name="help" type="html">
+            <p>Here You can enter the details about crm lead</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_crm" name="CRM Lead"/>
+    <menuitem id="menu_crm_details" name="CRM" parent="menu_crm" action="action_crm_lead_demo"/>
+</odoo>
+
+
